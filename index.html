@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+<body>
+   
+    <div class="container">
+        <div class="header">
+            <h2>BOOK INFO</h2>
+        </div>
+        <form id="form" class="form">
+            <div class="form-control">
+                <label for="adil">Title:</label>
+                <input autocomplete="off" type="text" placeholder="book title" id="titlet" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label>Author:</label>
+                <input autocomplete="off" type="text" placeholder="author" id="author" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+           
+                
+                <label for="start">Publication Date:</label>
+
+                <input type="date" id="date" name="trip-start">
+                
+
+            </div>
+            <div class="form-control">
+                <label for="adil">Price:</label>
+                <input autocomplete="off" type="text" placeholder="book price" id="price"/>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+            <div class="form-control">
+                <label for="adil">Book Type:</label>
+                <input autocomplete="off" type="text" placeholder="book language" id="language"/>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
+            </div>
+
+              <div class="form-control">
+                <label for="adil">Language:</label>
+                <select autocomplete="off" autocomplete="off" name="cars" id="cars">
+                    <option disabled selected value> -- select an option -- </option>
+                    <option value="arabic">Arabic</option>
+                    <option value="France">France</option>
+                    <option value="English">English</option>
+                    <option value="Swedish">Swedish</option>
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </select>
+                
+
+            </div>
+            <button>Submit</button>
+        </form>
+    </div>
+    
+    
+    <!-- SOCIAL PANEL HTML -->
+    <div class="social-panel-container">
+        <div class="social-panel">
+            <p>Created with <i class="fa fa-heart"></i> by
+                <a target="_blank" href="https://florin-pop.com">Florin Pop</a></p>
+            <button class="close-btn"><i class="fas fa-times"></i></button>
+            <h4>Get in touch on</h4>
+            <ul>
+                <li>
+                    <a href="https://www.patreon.com/florinpop17" target="_blank">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/florinpop1705" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://linkedin.com/in/florinpop17" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://facebook.com/florinpop17" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://instagram.com/florinpop17" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    
+    
+    <script>
+        const form = document.getElementById('form');
+const titlet = document.getElementById('titlet');
+const author = document.getElementById('author');
+const password = document.getElementById('password');
+const password2 = document.getElementById('password2');
+const date = document.getElementById('date');
+var max_length = 3;
+
+
+form.addEventListener('submit', e => {
+	e.preventDefault();
+	
+	checkInputs();
+});
+
+function checkInputs() {
+	// trim to remove the whitespaces
+	const titletValue = titlet.value.trim();
+	const authorValue = author.value.trim();
+	const priceValue = price.value.trim();
+	const languageValue = language.value.trim();
+	const dateValue = date.value.trim();
+
+	if(titletValue === '') {
+		setErrorFor(titlet, 'title cannot be blank');
+	} else {
+		setSuccessFor(titlet);
+	}
+    if (titlet.value.length>max_length) {
+        setErrorFor(titlet, 'title must be lest 30');
+    }
+
+
+	
+	if(authorValue === '') {
+		setErrorFor(author, 'author cannot be blank');
+
+	} else {
+		setSuccessFor(author);
+	}
+    if (author.value.length>max_length) {
+        setErrorFor(author, 'title must be lest 30');
+    }
+	
+	if(priceValue === '') {
+		setErrorFor(price, 'price cannot be blank');
+	} else {
+		setSuccessFor(price);
+	}
+	
+	if(languageValue === '') {
+		setErrorFor(language, 'language cannot be blank');
+	
+	} else{
+		setSuccessFor(language);
+	}
+    if(dateValue === '') {
+		setErrorFor(date, 'title cannot be blank');
+	} else {
+		setSuccessFor(date);
+	}
+}
+
+function setErrorFor(input, message) {
+	const formControl = input.parentElement;
+	const small = formControl.querySelector('small');
+	formControl.className = 'form-control error';
+	small.innerText = message;
+}
+
+function setSuccessFor(input) {
+	const formControl = input.parentElement;
+	formControl.className = 'form-control success';
+}
+	
+
+
+
+// SOCIAL PANEL JS
+
+const close_btn = document.querySelector('.close-btn');
+const social_panel_container = document.querySelector('.social-panel-container');
+
+floating_btn.addEventListener('click', () => {
+	social_panel_container.classList.toggle('visible')
+});
+
+close_btn.addEventListener('click', () => {
+	social_panel_container.classList.remove('visible')
+});
+    </script>
+</body>
+</html>
