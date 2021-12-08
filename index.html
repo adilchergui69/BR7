@@ -15,7 +15,7 @@
    
     <div class="container">
         <div class="header">
-            <h2>BOOK INFO</h2>
+            <h2 style="text-align: center;" >Book Information</h2>
         </div>
         <form id="form" class="form">
             <div class="form-control">
@@ -38,93 +38,74 @@
                 <label for="start">Publication Date:</label>
 
                 <input type="date" id="date" name="trip-start">
-                
+           
+                <small>Error message</small>
 
             </div>
             <div class="form-control">
                 <label for="adil">Price:</label>
-                <input autocomplete="off" type="text" placeholder="book price" id="price"/>
+                <input autocomplete="off" type="number" step=".01"  min="0" placeholder="book price" id="price"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
             </div>
-            <div class="form-control">
-                <label for="adil">Book Type:</label>
-                <input autocomplete="off" type="text" placeholder="book language" id="language"/>
-                <i class="fas fa-check-circle"></i>
-                <i class="fas fa-exclamation-circle"></i>
-                <small>Error message</small>
-            </div>
+           
 
               <div class="form-control">
                 <label for="adil">Language:</label>
-                <select autocomplete="off" autocomplete="off" name="cars" id="cars">
-                    <option disabled selected value> -- select an option -- </option>
+                <select id="lang" autocomplete="off" name="selection" >
+                    <option disabled hidden selected value> -- select an option -- </option>
                     <option value="arabic">Arabic</option>
                     <option value="France">France</option>
                     <option value="English">English</option>
                     <option value="Swedish">Swedish</option>
-                    <i class="fas fa-check-circle"></i>
-                    <i class="fas fa-exclamation-circle"></i>
-                    <small>Error message</small>
+               
+                    
                 </select>
-                
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error message</small>
 
             </div>
+            <div class="form-control">
+                <label style="display: block;" for="adil"> Book Type:</label>
+                <label class="container-radio">One
+                    <input type="radio"name="season">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="container-radio">Two
+                    <input type="radio" name="season">
+                    <span class="checkmark"></span>
+                  </label>
+                  <label class="container-radio">Three
+                    <input type="radio" name="season">
+                    <span class="checkmark"></span>
+                  </label>
+                <p id="radiobtn" ></p>
+             
+            </div>
+            
             <button>Submit</button>
         </form>
     </div>
     
+
     
-    <!-- SOCIAL PANEL HTML -->
-    <div class="social-panel-container">
-        <div class="social-panel">
-            <p>Created with <i class="fa fa-heart"></i> by
-                <a target="_blank" href="https://florin-pop.com">Florin Pop</a></p>
-            <button class="close-btn"><i class="fas fa-times"></i></button>
-            <h4>Get in touch on</h4>
-            <ul>
-                <li>
-                    <a href="https://www.patreon.com/florinpop17" target="_blank">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://twitter.com/florinpop1705" target="_blank">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://linkedin.com/in/florinpop17" target="_blank">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://facebook.com/florinpop17" target="_blank">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://instagram.com/florinpop17" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
 
     
     
     <script>
-        const form = document.getElementById('form');
+const form = document.getElementById('form');
 const titlet = document.getElementById('titlet');
 const author = document.getElementById('author');
 const password = document.getElementById('password');
 const password2 = document.getElementById('password2');
 const date = document.getElementById('date');
-var max_length = 3;
 
+const lang = document.getElementById('lang')
+var max_length = 30;
 
+var type = document.getElementsByClassName("type");
 form.addEventListener('submit', e => {
 	e.preventDefault();
 	
@@ -136,47 +117,69 @@ function checkInputs() {
 	const titletValue = titlet.value.trim();
 	const authorValue = author.value.trim();
 	const priceValue = price.value.trim();
-	const languageValue = language.value.trim();
+	
 	const dateValue = date.value.trim();
+    var numbers = /^[0-9]+$/;
+
 
 	if(titletValue === '') {
-		setErrorFor(titlet, 'title cannot be blank');
+		setErrorFor(titlet, '*title cannot be blank');
+
+    }
+    else if (!isNaN(titletValue)) {
+        setErrorFor(titlet, '*ONLY TEXT');
 	} else {
 		setSuccessFor(titlet);
 	}
     if (titlet.value.length>max_length) {
-        setErrorFor(titlet, 'title must be lest 30');
+        setErrorFor(titlet, '*title must be lest 30');
     }
-
-
+ 
+    
 	
 	if(authorValue === '') {
-		setErrorFor(author, 'author cannot be blank');
+		setErrorFor(author, '*author cannot be blank');
 
 	} else {
 		setSuccessFor(author);
 	}
+
     if (author.value.length>max_length) {
-        setErrorFor(author, 'title must be lest 30');
+        setErrorFor(author, '*title must be lest 30');
     }
 	
 	if(priceValue === '') {
-		setErrorFor(price, 'price cannot be blank');
+		setErrorFor(price, '*price cannot be blank');
 	} else {
 		setSuccessFor(price);
 	}
 	
-	if(languageValue === '') {
-		setErrorFor(language, 'language cannot be blank');
 	
-	} else{
-		setSuccessFor(language);
-	}
     if(dateValue === '') {
-		setErrorFor(date, 'title cannot be blank');
+		setErrorFor(date, '*date cannot be blank');
 	} else {
 		setSuccessFor(date);
 	}
+
+if(lang.value == ""){
+    lang.parentElement.className = 'form-control error'
+    setErrorFor(lang, '*Language cannot be blank');
+} else {
+		setSuccessFor(lang);
+	}
+
+    var getSelectedValue = document.querySelector('input[name="season"]:checked');
+
+            if(getSelectedValue != null) {
+                document.getElementById("radiobtn").innerHTML =  " season is selected";
+                radiobtn.style.color = '#2ecc71'
+            }
+            else {
+          document.getElementById("radiobtn").innerHTML = "*You have not selected any season";
+          radiobtn.style.color = '#e74c3c'
+            }
+            
+
 }
 
 function setErrorFor(input, message) {
@@ -190,22 +193,22 @@ function setSuccessFor(input) {
 	const formControl = input.parentElement;
 	formControl.className = 'form-control success';
 }
-	
+
+function setErrorFor(select, message) {
+	const formControl = select.parentElement;
+	const small = formControl.querySelector('small');
+	formControl.className = 'form-control error';
+	small.innerText = message;
+}
+
+function setSuccessFor(select) {
+	const formControl = select.parentElement;
+	formControl.className = 'form-control success';
+}
 
 
 
-// SOCIAL PANEL JS
 
-const close_btn = document.querySelector('.close-btn');
-const social_panel_container = document.querySelector('.social-panel-container');
-
-floating_btn.addEventListener('click', () => {
-	social_panel_container.classList.toggle('visible')
-});
-
-close_btn.addEventListener('click', () => {
-	social_panel_container.classList.remove('visible')
-});
     </script>
 </body>
 </html>
