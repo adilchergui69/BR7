@@ -81,15 +81,15 @@
             <div class="form-control">
                 <label  style="display: block;" for="adil"> Book Type:</label>
                 <label id="type" class="container-radio">One
-                    <input type="radio"name="season">
+                    <input type="radio"name="season" class="type">
                     <span class="checkmark"></span>
                   </label>
-                  <label id="type" class="container-radio">Two
-                    <input type="radio" name="season">
+                  <label id="type" class="container-radio" >Two
+                    <input type="radio" name="season" class="type">
                     <span class="checkmark"></span>
                   </label>
                   <label id="type" class="container-radio">Three
-                    <input type="radio" name="season">
+                    <input type="radio" name="season" class="type">
                     <span class="checkmark"></span>
                   </label>
                 <p id="radiobtn" ></p>
@@ -107,13 +107,13 @@ const author = document.getElementById('author');
 const date = document.getElementById('date');
 const lang = document.getElementById('lang');
 var table = document.getElementById("table");
+var type=document.getElementsByClassName("type");
 var max_length = 30;
 
 
 
 form.addEventListener('submit', e => {
 	e.preventDefault();
-	
 	checkInputs();
 });
 
@@ -125,11 +125,10 @@ function checkInputs() {
 	const dateValue = date.value.trim();
     const langValue = lang.value.trim();
     var letters = /^[a-z]*$/i;
-    var error_situation = false
+    var error_situation = false;
 
 	if(titletValue === '') {
 		setErrorFor(titlet, '*title cannot be blank');
-
     }
     else if (!titletValue.match(letters)) {
         setErrorFor(titlet, '*letters only');
@@ -144,7 +143,7 @@ function checkInputs() {
 	
 	if(authorValue === '') {
 		setErrorFor(author, '*author cannot be blank');
-
+        error_situation++
 	} else {
 		setSuccessFor(author);
 	}
@@ -171,9 +170,7 @@ function checkInputs() {
     } else {
         setSuccessFor(lang);
 	}
-    if(titletValue !== '' && priceValue !== '' && langValue !== '' && dateValue !== ''  (authorValue  ){
-
-    }
+   
     
     var getSelectedValue = document.querySelector('input[name="season"]:checked');
 
@@ -186,26 +183,37 @@ function checkInputs() {
           radiobtn.style.color = '#e74c3c'
             }
 //////////////////////////////////////////////////////////////////////////////
-        var row = table.insertRow(-1);
-        row.insertCell(0).innerHTML = titletValue;
+       
+        if(!error_situation){
+            var row = table.insertRow(-1);
+            row.insertCell(0).innerHTML = titletValue;
             row.insertCell(1).innerHTML = authorValue;
             row.insertCell(2).innerHTML = priceValue;
             row.insertCell(3).innerHTML = dateValue;
             row.insertCell(4).innerHTML = lang.options[lang.selectedIndex].value;
-}
+            row.insertCell(5).innerHTML = CellType;
+            var CellType="";
+                for(i=0;i<type.length;i++)
+                {
+                    if(type[i].checked)
+                    {
+                        CellType=type[i].value;
+                    }
+                }
+        }
+    }
 
 function setErrorFor(input, message) {
 	const formControl = input.parentElement;
 	const small = formControl.querySelector('small');
 	formControl.className = 'form-control error';
 	small.innerText = message;
-    
+    error_situation = true;
 }
 
 function setSuccessFor(input) {
 	const formControl = input.parentElement;
 	formControl.className = 'form-control success';
-            
 }
 
 function setErrorFor(select, message) {
