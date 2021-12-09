@@ -13,8 +13,7 @@
 </head>
 <body>
    
-    <table class="list" id="storeList">
-        <thead>
+    <table  class="list" id="table">
             <tr>
                 <th>Title</th>
                 <th>Author</th>
@@ -23,10 +22,6 @@
                 <th>Language</th>
                 <th>Type</th>
             </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
     </table>
 
     <div class="container">
@@ -84,16 +79,16 @@
 
             </div>
             <div class="form-control">
-                <label style="display: block;" for="adil"> Book Type:</label>
-                <label class="container-radio">One
+                <label  style="display: block;" for="adil"> Book Type:</label>
+                <label id="type" class="container-radio">One
                     <input type="radio"name="season">
                     <span class="checkmark"></span>
                   </label>
-                  <label class="container-radio">Two
+                  <label id="type" class="container-radio">Two
                     <input type="radio" name="season">
                     <span class="checkmark"></span>
                   </label>
-                  <label class="container-radio">Three
+                  <label id="type" class="container-radio">Three
                     <input type="radio" name="season">
                     <span class="checkmark"></span>
                   </label>
@@ -105,23 +100,17 @@
         </form>
     </div>
     
-
-    
-
-    
-    
     <script>
 const form = document.getElementById('form');
 const titlet = document.getElementById('titlet');
 const author = document.getElementById('author');
-const password = document.getElementById('password');
-const password2 = document.getElementById('password2');
 const date = document.getElementById('date');
-
-const lang = document.getElementById('lang')
+const lang = document.getElementById('lang');
+var table = document.getElementById("table");
 var max_length = 30;
 
-var type = document.getElementsByClassName("type");
+
+
 form.addEventListener('submit', e => {
 	e.preventDefault();
 	
@@ -133,10 +122,10 @@ function checkInputs() {
 	const titletValue = titlet.value.trim();
 	const authorValue = author.value.trim();
 	const priceValue = price.value.trim();
-	
 	const dateValue = date.value.trim();
+    const langValue = lang.value.trim();
     var letters = /^[a-z]*$/i;
-
+    var error_situation = true
 
 	if(titletValue === '') {
 		setErrorFor(titlet, '*title cannot be blank');
@@ -194,8 +183,13 @@ if(lang.value == ""){
           document.getElementById("radiobtn").innerHTML = "*You have not selected any season";
           radiobtn.style.color = '#e74c3c'
             }
-            
-
+//////////////////////////////////////////////////////////////////////////////
+        var row = table.insertRow(-1);
+        row.insertCell(0).innerHTML = titletValue;
+            row.insertCell(1).innerHTML = authorValue;
+            row.insertCell(2).innerHTML = priceValue;
+            row.insertCell(3).innerHTML = dateValue;
+            cell5.innerHTML = lang.options[lang.selectedIndex].value;
 }
 
 function setErrorFor(input, message) {
@@ -203,11 +197,13 @@ function setErrorFor(input, message) {
 	const small = formControl.querySelector('small');
 	formControl.className = 'form-control error';
 	small.innerText = message;
+    
 }
 
 function setSuccessFor(input) {
 	const formControl = input.parentElement;
 	formControl.className = 'form-control success';
+            
 }
 
 function setErrorFor(select, message) {

@@ -50,7 +50,7 @@ padding: 2%;
 }
 
 .form-control input {
-	border: 2px solid #f0f0f0;
+	border: 1px solid rgb(165,161,161);
 	border-radius: 4px;
 	display: block;
 	font-family: inherit;
@@ -60,7 +60,7 @@ padding: 2%;
 }
 
 .form-control select {
-	border: 2px solid #f0f0f0;
+	border: 1px solid rgb(165,161,161);
 	border-radius: 4px;
 	display: block;
 	font-family: inherit;
@@ -105,11 +105,13 @@ padding: 2%;
 .form-control.option i.fa-check-circle {
 	color: #2ecc71;
 	visibility: visible;
+	margin-top: 3%;
 }
 
 .form-control.error i.fa-exclamation-circle {
 	color: #e74c3c;
 	visibility: visible;
+	margin-top: 3%;
 }
 
 .form-control small {
@@ -346,7 +348,7 @@ button:hover{
   
   /* When the radio button is checked, add a blue background */
   .container input:checked ~ .checkmark {
-	background-color: #2196F3;
+	background-color: #b65959;
   }
   
   /* Create the indicator (the dot/circle - hidden when not checked) */
