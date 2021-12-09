@@ -125,7 +125,7 @@ function checkInputs() {
 	const dateValue = date.value.trim();
     const langValue = lang.value.trim();
     var letters = /^[a-z]*$/i;
-    var error_situation = true
+    var error_situation = false
 
 	if(titletValue === '') {
 		setErrorFor(titlet, '*title cannot be blank');
@@ -159,20 +159,22 @@ function checkInputs() {
 		setSuccessFor(price);
 	}
 	
-	
     if(dateValue === '') {
-		setErrorFor(date, '*date cannot be blank');
+        setErrorFor(date, '*date cannot be blank');
 	} else {
-		setSuccessFor(date);
+        setSuccessFor(date);
 	}
-
-if(lang.value == ""){
-    lang.parentElement.className = 'form-control error'
-    setErrorFor(lang, '*Language cannot be blank');
-} else {
-		setSuccessFor(lang);
+    
+    if(lang.value == ""){
+        lang.parentElement.className = 'form-control error'
+        setErrorFor(lang, '*Language cannot be blank');
+    } else {
+        setSuccessFor(lang);
 	}
+    if(titletValue !== '' && priceValue !== '' && langValue !== '' && dateValue !== ''  (authorValue  ){
 
+    }
+    
     var getSelectedValue = document.querySelector('input[name="season"]:checked');
 
             if(getSelectedValue != null) {
@@ -189,7 +191,7 @@ if(lang.value == ""){
             row.insertCell(1).innerHTML = authorValue;
             row.insertCell(2).innerHTML = priceValue;
             row.insertCell(3).innerHTML = dateValue;
-            cell5.innerHTML = lang.options[lang.selectedIndex].value;
+            row.insertCell(4).innerHTML = lang.options[lang.selectedIndex].value;
 }
 
 function setErrorFor(input, message) {
