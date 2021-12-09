@@ -119,15 +119,15 @@ function checkInputs() {
 	const priceValue = price.value.trim();
 	
 	const dateValue = date.value.trim();
-    var numbers = /^[0-9]+$/;
+    var letters = /^[a-z]*$/i;
 
 
 	if(titletValue === '') {
 		setErrorFor(titlet, '*title cannot be blank');
 
     }
-    else if (!isNaN(titletValue)) {
-        setErrorFor(titlet, '*ONLY TEXT');
+    else if (!titletValue.match(letters)) {
+        setErrorFor(titlet, '*letters only');
 	} else {
 		setSuccessFor(titlet);
 	}
