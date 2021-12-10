@@ -125,14 +125,14 @@ function checkInputs() {
 	const dateValue = date.value.trim();
     const langValue = lang.value.trim();
 
-    var letters = /^[a-z]*$/i;
+    var letters = /^[a-z\s]*$/i;
     var error_situation = false;
 
 	if(titletValue === '') {
 		setErrorFor(titlet, '*title cannot be blank');
         error_situation++
     }
-    else if (!titletValue.match(letters)) {
+    if (!titletValue.match(letters)) {
         setErrorFor(titlet, '*letters only');
         error_situation++
 	} else {
@@ -155,13 +155,13 @@ function checkInputs() {
 	if(authorValue === '') {
 		setErrorFor(author, '*author cannot be blank');
         error_situation++
+        
 	} else {
 		setSuccessFor(author);
 	}
 
     if (author.value.length>max_length) {
         setErrorFor(author, '*title must be lest 30');
-        error_situation++
     }
 	
 	if(priceValue === '') {
@@ -169,6 +169,7 @@ function checkInputs() {
         error_situation++
 	} else {
 		setSuccessFor(price);
+       
 	}
 	
     if(dateValue === '') {
@@ -179,9 +180,9 @@ function checkInputs() {
 	}
     
     if(lang.value == ""){
+        error_situation++
         lang.parentElement.className = 'form-control error'
         setErrorFor(lang, '*Language cannot be blank');
-        error_situation++
     } else {
         setSuccessFor(lang);
 	}
@@ -190,6 +191,7 @@ function checkInputs() {
     var getSelectedValue = document.querySelector('input[name="season"]:checked');
 
             if(getSelectedValue != null) {
+               
                 document.getElementById("radiobtn").innerHTML =  " season is selected";
                 radiobtn.style.color = '#2ecc71'
             }
@@ -215,25 +217,25 @@ function checkInputs() {
                     if(type[i].checked)
                     {
                         CellType=type[i].value;
-                    }
+                    } 
                 }
                 row.insertCell(5).innerHTML = CellType;
-
         }
+       
     }
-
 
 function setErrorFor(input, message) {
 	const formControl = input.parentElement;
 	const small = formControl.querySelector('small');
 	formControl.className = 'form-control error';
 	small.innerText = message;
-    error_situation = true;
+    error_situation = false;
 }
 
 function setSuccessFor(input) {
 	const formControl = input.parentElement;
 	formControl.className = 'form-control success';
+    error_situation = true;
 }
 
 function setErrorFor(select, message) {
@@ -270,10 +272,11 @@ function updateRecord(formData){
 
 //Delete the data
 function onDelete(td){
-    if(confirm('Do you want to delete this record?')){
+    if(confirm('Do you want to delete this row?')){
         row = td.parentElement.parentElement;
         document.getElementById('table').deleteRow(row.rowIndex);
     }
+
     resetForm();
 }
 
