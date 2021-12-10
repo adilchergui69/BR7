@@ -209,7 +209,7 @@ function checkInputs() {
             row.insertCell(2).innerHTML = dateValue;
             row.insertCell(3).innerHTML = priceValue + "$";
             row.insertCell(4).innerHTML = lang.options[lang.selectedIndex].value;
-            row.insertCell(5).innerHTML = `<button onClick='onEdit(this)'>Edit</button> <button onClick='onDelete(this)'>Delete</button>`
+            row.insertCell(5).innerHTML = `<button class="edit" onClick='onEdit(this)'>Edit</button> <button class="delete"  onClick='onDelete(this)'>Delete</button>`
             
             var CellType="";
 

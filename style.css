@@ -433,7 +433,12 @@ input[type="submit"],input[type="reset"]{
     cursor: pointer;
     outline: none;
 }
-
+.delete{
+	background-color: #b65959;
+}
+.edit{
+	background-color: #e8e86b;
+}
 input[type="submit"]:hover{
     background: #4b99d8;
 }
