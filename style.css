@@ -6,7 +6,7 @@
 }
 
 body {
-	background-color: #cccccc;
+	background-color: #2a2a34;
 	font-family: 'Open Sans', sans-serif;
 padding: 2%;
 
@@ -398,7 +398,7 @@ table.list{
     text-align: center;
     width: 64%;
 	position: absolute;
-	left: 35%;
+	left: 33.5%;
 
 }
 

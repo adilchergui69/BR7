@@ -131,18 +131,19 @@ function checkInputs() {
 	if(titletValue === '') {
 		setErrorFor(titlet, '*title cannot be blank');
         error_situation++
+
     }
-    if (!titletValue.match(letters)) {
-        setErrorFor(titlet, '*letters only');
-        error_situation++
-	} else {
+     else {
 		setSuccessFor(titlet);
 	}
     if (titlet.value.length>max_length) {
         setErrorFor(titlet, '*title must be lest 30');
         error_situation++
     }
- 
+    if (!titletValue.match(letters)) {
+        setErrorFor(titlet, '*letters only');
+        error_situation++
+	}
     if(priceValue === '') {
 		setErrorFor(price, '*author cannot be blank');
         error_situation++
@@ -221,7 +222,7 @@ function checkInputs() {
                 }
                 row.insertCell(5).innerHTML = CellType;
         }
-       
+        
     }
 
 function setErrorFor(input, message) {
