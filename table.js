@@ -32,7 +32,7 @@ function checkInputs() {
 	const authorValue = author.value.trim();
 	const priceValue = price.value.trim();
 	const dateValue = date.value.trim();
-    const langValue = lang.value.trim();
+    
 
     var letters = /^[a-z\s]*$/i;
     var error_situation = false;
@@ -97,6 +97,7 @@ function checkInputs() {
         setSuccessFor(lang);
 	}
    
+
     
     var getSelectedValue = document.querySelector('input[name="season"]:checked');
 
@@ -108,6 +109,7 @@ function checkInputs() {
             else {
           document.getElementById("radiobtn").innerHTML = "*You have not selected any season";
           radiobtn.style.color = '#e74c3c'
+          error_situation++
             }
 //////////////////////////////////////////////////////////////////////////////
 
@@ -119,17 +121,7 @@ function checkInputs() {
             row.insertCell(3).innerHTML = priceValue;
             row.insertCell(4).innerHTML = lang.options[lang.selectedIndex].value;
             row.insertCell(5).innerHTML = '<input type="submit" value="Edit" class="edit" onClick="onEdit(this)">'+ '<button class="delete"  onClick="onDelete(this)">Delete</button>'
-            
-            var CellType="";
-
-                for(i=0;i<type.length;i++)
-                {
-                    if(type[i].checked)
-                    {
-                        CellType=type[i].value;
-                    } 
-                }
-                row.insertCell(5).innerHTML = CellType;
+            row.insertCell(5).innerHTML = getSelectedValue;
         }
         // if (error_situation = true){
         //     resetForm()
@@ -161,6 +153,9 @@ function onEdit(td){
     document.getElementById('date').value = selectedRow.cells[2].innerHTML;
     document.getElementById('price').value = selectedRow.cells[3].innerHTML;
     document.getElementById('lang').value = selectedRow.cells[4].innerHTML;
+    typecheck = selectedRow.cells[4].innerHTML;
+
+
     for(j=0;j<type.length;j++){
         if(selectedRow.cells[5].innerHTML==type[j].value)
         {
