@@ -255,7 +255,11 @@ button:hover{
 	width: 50px;
 	text-decoration: none;
 }
-
+.delete {
+	background-color: black;
+	color: white;
+	margin-left: 4PX;
+}
 .social-panel ul li a:hover {
 	border-color: #FF6A00;
 	box-shadow: 0 9px 12px -9px #FF6A00;
@@ -433,9 +437,27 @@ input[type="submit"],input[type="reset"]{
     cursor: pointer;
     outline: none;
 }
-.delete{
-	background-color: #b65959;
+#Update {
+
+	background: #228fd2;
+    padding:6px 12px;
+    margin:15px 0 10px;
+    display: inline-block;
+	color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 28px;
+    cursor: pointer;
+    outline: none;
+	display: none;
+	width: 313PX;
+    height: 46PX;
 }
+
+#Update:hover{
+	opacity: 90%;
+}
+
 .edit{
 	background-color: #e8e86b;
 }
