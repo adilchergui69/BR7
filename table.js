@@ -121,7 +121,17 @@ function checkInputs() {
             row.insertCell(3).innerHTML = priceValue;
             row.insertCell(4).innerHTML = lang.options[lang.selectedIndex].value;
             row.insertCell(5).innerHTML = '<input type="submit" value="Edit" class="edit" onClick="onEdit(this)">'+ '<button class="delete"  onClick="onDelete(this)">Delete</button>'
-            row.insertCell(5).innerHTML = getSelectedValue;
+            var CellType="";
+
+            for(i=0;i<type.length;i++)
+            {
+                if(type[i].checked)
+                {
+                    CellType=type[i].value;
+                } 
+            }
+            row.insertCell(5).innerHTML = CellType;
+    
 
             
         }
