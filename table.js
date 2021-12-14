@@ -131,15 +131,14 @@ function checkInputs() {
                 } 
             }
             row.insertCell(5).innerHTML = CellType;
-    
+            resetForm()
 
-            
+          
+        
         }
-        // if (error_situation = true){
-        //     resetForm()
-        // }
+      
     }
-
+ 
 function setErrorFor(input, message) {
 	const formControl = input.parentElement;
 	const small = formControl.querySelector('small');
@@ -153,12 +152,13 @@ function setSuccessFor(input) {
 	const formControl = input.parentElement;
 	formControl.className = 'form-control success';
     error_situation = true;
-    
+  
 }
 
 
 //Edit the data
 function onEdit(td){
+    
     selectedRow = td.parentElement.parentElement;
     document.getElementById('titlet').value = selectedRow.cells[0].innerHTML;
     document.getElementById('author').value = selectedRow.cells[1].innerHTML;
@@ -176,10 +176,10 @@ function onEdit(td){
     }
     document.getElementById('Submit').style.display = "none";
     document.getElementById('Update').style.display = "block";
-
+    resetForm()
 }
 
-function onUpdate(formData){
+function onUpdate(){
     selectedRow.cells[0].innerHTML = document.getElementById('titlet').value;
     selectedRow.cells[1].innerHTML = document.getElementById('author').value;
     selectedRow.cells[2].innerHTML = document.getElementById('date').value;
@@ -208,3 +208,11 @@ function onDelete(B){
 }
 
 
+//Reset the data
+function resetForm(){
+    document.getElementById('titlet').value = '';
+    document.getElementById('author').value = '';
+    document.getElementById('date').value = '';
+    document.getElementById('price').value = '';
+    document.getElementById('lang').value= '';
+}
