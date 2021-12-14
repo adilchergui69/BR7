@@ -176,7 +176,6 @@ function onEdit(td){
     }
     document.getElementById('Submit').style.display = "none";
     document.getElementById('Update').style.display = "block";
-    resetForm()
 }
 
 function onUpdate(){
