@@ -122,6 +122,8 @@ function checkInputs() {
             row.insertCell(4).innerHTML = lang.options[lang.selectedIndex].value;
             row.insertCell(5).innerHTML = '<input type="submit" value="Edit" class="edit" onClick="onEdit(this)">'+ '<button class="delete"  onClick="onDelete(this)">Delete</button>'
             row.insertCell(5).innerHTML = getSelectedValue;
+
+            
         }
         // if (error_situation = true){
         //     resetForm()
